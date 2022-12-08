@@ -15,6 +15,12 @@
         "polyfills": ["zone.js"],
         "tsConfig": "packages/bater-ponto-client/tsconfig.app.json",
         "inlineStyleLanguage": "scss",
+        "fileReplacements": [
+          {
+            "replace": "packages/bater-ponto-client/src/environments/environment.ts",
+            "with": "packages/bater-ponto-client/src/environments/environment.prod.ts"
+          }
+        ],
         "assets": [
           "packages/bater-ponto-client/src/favicon.ico",
           "packages/bater-ponto-client/src/assets"
