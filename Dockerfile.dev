@@ -1,0 +1,14 @@
+FROM node:16.18.1
+
+RUN alias ll="ls -al"
+
+WORKDIR /bater-ponto
+COPY package.json /bater-ponto/
+RUN npm install
+
+EXPOSE 4200
+EXPOSE 3333
+
+# RUN npm install npx@latest nx@latest -g
+
+CMD [ "npm", "start" ]
