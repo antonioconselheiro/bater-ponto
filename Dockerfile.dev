@@ -1,14 +1,20 @@
+# download da imagem base
 FROM node:16.18.1
 
+# customizações
 RUN alias ll="ls -al"
 
+# área de trabalho
 WORKDIR /bater-ponto
-COPY package.json /bater-ponto/
+
+# instalação das dependências
+COPY package.json .
 RUN npm install
+RUN npm install npx@latest nx@latest -g --force
 
-EXPOSE 4200
-EXPOSE 3333
+# exposição de portas
+EXPOSE 3434
+EXPOSE 4205
 
-# RUN npm install npx@latest nx@latest -g
-
+# nenhuma execução
 CMD [ "npm", "start" ]

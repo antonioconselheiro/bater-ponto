@@ -62,7 +62,9 @@
           "browserTarget": "bater-ponto-client:build:production"
         },
         "development": {
-          "browserTarget": "bater-ponto-client:build:development"
+          "browserTarget": "bater-ponto-client:build:development",
+          "port": 4205,
+          "host": "0.0.0.0"
         }
       },
       "defaultConfiguration": "development"

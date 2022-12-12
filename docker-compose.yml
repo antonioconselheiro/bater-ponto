@@ -1,7 +1,7 @@
 version: '3'
 
 volumes:
-  node_modules_volume:
+  node_modules_vol:
     driver: local
     driver_opts:
       type: none
@@ -16,9 +16,9 @@ services:
       context: ./.
       dockerfile: ./Dockerfile.dev
     ports:
-     - "4200:4200"
-     - "3333:3333"
+     - "3434:3434"
+     - "4205:4205"
     volumes:
      - ./:/bater-ponto
-     - node_modules_volume:/bater-ponto/node_modules
+     - node_modules_vol:/bater-ponto/node_modules
     working_dir: /bater-ponto
