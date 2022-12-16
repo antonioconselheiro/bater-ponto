@@ -5,8 +5,7 @@
     {
       "files": ["*.ts"],
       "extends": [
-        "plugin:@nrwl/nx/angular",
-        "plugin:@angular-eslint/template/process-inline-templates"
+        "plugin:@nrwl/nx/angular"
       ],
       "rules": {
         "@angular-eslint/directive-selector": [
@@ -24,14 +23,19 @@
             "prefix": "bater-ponto",
             "style": "kebab-case"
           }
-        ],
-        "@angular-eslint/template/use-track-by-function": "error"
+        ]
       }
     },
     {
       "files": ["*.html"],
-      "extends": ["plugin:@nrwl/nx/angular-template"],
-      "rules": {}
+      "parser": "@angular-eslint/template-parser",
+      "extends": [
+        "plugin:@nrwl/nx/angular-template",
+        "plugin:@angular-eslint/template/process-inline-templates"
+      ],
+      "rules": {
+        "@angular-eslint/template/use-track-by-function": "error"
+      }
     }
   ]
 }

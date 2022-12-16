@@ -36,4 +36,8 @@ export class AppComponent implements OnInit {
       .then(pontos => this.pontos = pontos)
       .catch(error => console.error(error));
   }
+
+  trackByFn(index: number): number {
+    return index;
+  }
 }

@@ -1,7 +1,7 @@
 <button (click)="onClickBaterPonto()">Bater ponto</button>
 
 <ul>
-    <li *ngFor="let ponto of pontos; let i = index">
+    <li *ngFor="let ponto of pontos; let i = index; trackBy: trackByFn">
         {{ponto}}
         <button (click)="onClickDeletePonto(i)">x</button>
     </li>
