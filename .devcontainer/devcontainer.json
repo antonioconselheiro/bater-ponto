@@ -29,8 +29,7 @@
 				"ZainChen.json",
 				"esbenp.prettier-vscode",
 				"wayou.vscode-todo-highlight",
-				"sainnhe.gruvbox-material",
-				"eamodio.gitlens-insiders"
+				"sainnhe.gruvbox-material"
 			]
 		}
 	}
