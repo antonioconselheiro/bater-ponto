@@ -24,7 +24,8 @@
             "prefix": "bater-ponto",
             "style": "kebab-case"
           }
-        ]
+        ],
+        "@angular-eslint/template/use-track-by-function": "error"
       }
     },
     {
