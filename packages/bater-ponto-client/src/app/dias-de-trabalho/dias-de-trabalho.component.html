@@ -1,0 +1,8 @@
+<p *ngIf="!dias.length">Nenhum dia de trabalho cadastrado, inclua o seu primeiro</p>
+<ul *ngIf="dias.length">
+  <li *ngFor="let dia of dias; trackBy: trackByFn">
+    <a [routerLink]="[ '/meus-pontos', dia.id ]">{{dia.data}}</a>
+    <button (click)="deletarDiaTrabalho(dia.id)">x</button>
+  </li>
+</ul>
+<button (click)="createData()">Iniciar dia de trabalho</button>

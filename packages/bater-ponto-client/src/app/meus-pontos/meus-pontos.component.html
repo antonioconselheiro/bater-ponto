@@ -1,0 +1,9 @@
+<ng-container *ngIf="diaTrabalho">
+  <ul>
+    <li *ngFor="let ponto of diaTrabalho.pontos; trackBy: trackByFn">
+     {{ponto.hora}}
+     <button (click)="deletarPonto(diaTrabalho.id, ponto.id)">x</button>
+    </li>
+  </ul>
+  <button (click)="baterPonto(diaTrabalho.id)">Bater ponto</button>
+</ng-container>
