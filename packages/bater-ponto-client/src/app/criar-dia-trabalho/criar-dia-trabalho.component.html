@@ -1,0 +1,7 @@
+<ul *ngFor="let dia of dias; trackBy: trackByFn">
+  <li>
+    <a [routerLink]="['/bater-ponto', dia.id]">{{dia.dia}}</a>
+    <button (click)="deletarDia(dia)">x</button>
+  </li>
+</ul>
+<button (click)="baterPonto()">Bater Ponto</button>

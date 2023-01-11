@@ -31,7 +31,9 @@ export class AppService {
   baterPonto(idData: number, hora: HoraInputDto): HoraOutputDto {
     const id = this.autoincrement++;
     const horaOutput = { id, ...hora };
+    const dataOutput = this.indexData[idData];
     this.indexHora[id] = horaOutput;
+    dataOutput.pontos.push(horaOutput);
 
     return horaOutput;
   }
