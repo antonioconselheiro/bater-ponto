@@ -15,7 +15,11 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@bater-ponto/bater-ponto-domain": [
+        "packages/bater-ponto-domain/src/index.ts"
+      ]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }
