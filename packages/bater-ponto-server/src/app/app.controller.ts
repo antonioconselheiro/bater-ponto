@@ -1,8 +1,7 @@
-import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Param, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, ParseIntPipe, Post } from '@nestjs/common';
 import { AppService } from './app.service';
-import { DataInputDto, DataOutputDto, HoraInputDto, HoraOutputDto } from '@bater-ponto/bater-ponto-shared-domain';
 
-@Controller('pontos/datas')
+@Controller('pontos')
 export class AppController {
 
   constructor(
@@ -10,39 +9,17 @@ export class AppController {
   ) { }
 
   @Post()
-  @HttpCode(HttpStatus.CREATED)
-  criarDiaTrabalho(@Body() data: DataInputDto): DataOutputDto {
-    return this.appService.criarDiaTrabalho(data);
+  marcarPonto(@Body() body: { ponto: string }): string[] {
+    return this.appService.marcarPonto(body.ponto);
   }
 
   @Get()
-  listarDias(): DataOutputDto[] {
-    return this.appService.listarDias();
+  listarPonto(): string[] {
+    return this.appService.listarPonto();
   }
 
-  @Get(':idData')
-  listarPontosHoje(@Param('idData') idData: string): DataOutputDto {
-    return this.appService.listarPontosHoje(idData);
+  @Delete(':index')
+  deletarPonto(@Param('index', ParseIntPipe) index: number): string[] {
+    return this.appService.deletarPonto(index);
   }
-
-  @Delete(':idData')
-  @HttpCode(HttpStatus.NO_CONTENT)
-  deletarDiaTrabalho(@Param('idData') idData: string): void {
-    return this.appService.deletarDiaTrabalho(idData);
-  }
-
-  @Post(':idData/horas')
-  baterPonto(@Param('idData') idData: string, @Body() data: HoraInputDto): HoraOutputDto {
-    return this.appService.baterPonto(idData, data);
-  }
-
-  @Delete(':idData/horas/:idHora')
-  @HttpCode(HttpStatus.NO_CONTENT)
-  deletarPonto(
-    @Param('idData') idData: string,
-    @Param('idHora') idHora: string
-  ): void {
-    return this.appService.deletarPonto(idData, idHora);
-  }
-
 }
