@@ -1,6 +1,12 @@
+import { IsString } from "class-validator";
 
 export class DataInputDto {
   constructor(
-    public dia: string
-  ) {}
+    dia: string
+  ) {
+    this.dia = dia; 
+  }
+
+  @IsString()
+  dia: string;
 }

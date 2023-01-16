@@ -18,6 +18,7 @@ services:
     ports:
      - "3434:3434"
      - "4205:4205"
+     - "9229:9229"
     volumes:
      - ./:/bater-ponto
      - ~/.ssh/:/home/.ssh

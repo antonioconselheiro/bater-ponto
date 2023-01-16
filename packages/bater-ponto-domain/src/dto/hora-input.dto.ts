@@ -1,7 +1,16 @@
+import { IsOptional, IsString } from "class-validator";
+
 export class HoraInputDto {
   constructor(
-    public hora: string
-  ) { }
+    hora: string
+  ) {
+    this.hora = hora;
+  }
 
+  @IsString()
+  hora: string;
+
+  @IsString()
+  @IsOptional()
   descricao?: string;
 }

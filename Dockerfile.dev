@@ -15,6 +15,7 @@ RUN npm install npx@latest nx@latest -g --force
 # exposição de portas
 EXPOSE 3434
 EXPOSE 4205
+EXPOSE 9229
 
 # nenhuma execução
 CMD [ "npm", "start" ]

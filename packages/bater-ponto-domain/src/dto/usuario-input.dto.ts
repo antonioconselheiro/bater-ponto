@@ -1,7 +1,13 @@
+import { IsString } from "class-validator";
+
 export class UsuarioInputDto {
 
 	constructor(
-		public nome: string
-	) { }
+		nome: string
+	) {
+		this.nome = nome;
+	}
 
+	@IsString()
+	nome: string;
 }
