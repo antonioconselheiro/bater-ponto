@@ -10,7 +10,7 @@ WORKDIR /bater-ponto
 # instalação das dependências
 COPY package.json .
 RUN npm install
-RUN npm install npx@latest nx@latest -g
+RUN npm install npx@latest nx@latest -g --force
 
 # exposição de portas
 EXPOSE 3434
