@@ -25,9 +25,7 @@ export class CriarDiaTrabalhoComponent implements OnInit {
   private listarDias(): void {
     this.baterPontoApi
       .listarDias()
-      .then(dias => {
-        this.dias = dias;
-      })
+      .then(dias => this.dias = dias)
       .catch(e => console.error(e));
   }
 
