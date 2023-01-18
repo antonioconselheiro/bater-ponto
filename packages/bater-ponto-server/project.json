@@ -13,7 +13,12 @@
         "outputPath": "dist/packages/bater-ponto-server",
         "main": "packages/bater-ponto-server/src/main.ts",
         "tsConfig": "packages/bater-ponto-server/tsconfig.app.json",
-        "assets": ["packages/bater-ponto-server/src/assets"]
+        "assets": ["packages/bater-ponto-server/src/assets"],
+        "tsPlugins": [
+          {
+            "name": "@nestjs/swagger/plugin"
+          }
+        ]
       },
       "configurations": {
         "production": {
