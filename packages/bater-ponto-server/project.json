@@ -32,8 +32,6 @@
     "serve": {
       "executor": "@nrwl/js:node",
       "options": {
-        "inspect": true,
-        "host": "0.0.0.0",
         "buildTarget": "bater-ponto-server:build"
       },
       "configurations": {
