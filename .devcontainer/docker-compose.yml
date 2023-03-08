@@ -13,6 +13,7 @@ services:
   bater-ponto:
     image: bater-ponto
     container_name: bater-ponto
+    tty: true
     build:
       context: ../.
       dockerfile: ./.devcontainer/Dockerfile.dev
@@ -22,17 +23,9 @@ services:
      - "9229:9229"
     volumes:
      - ..:/bater-ponto:cached
-     - ~/.ssh/:/home/.ssh
-     - ~/.gitconfig/:/home/.gitconfig
+     - ../../.ssh/:/home/.ssh
+     - ../../.gitconfig/:/home/.gitconfig
      - node_modules_vol:/bater-ponto/node_modules
     working_dir: /bater-ponto
 
-    # Uncomment the next four lines if you will use a ptrace-based debugger like C++, Go, and Rust.
-    # cap_add:
-    #   - SYS_PTRACE
-    # security_opt:
-    #   - seccomp:unconfined
-
-    # Overrides default command so things don't shut down after the process ends.
-    command: /bin/sh -c "while sleep 1000; do :; done"
  

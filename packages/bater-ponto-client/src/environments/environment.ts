@@ -1,6 +1,4 @@
-import { IEnvironment } from './environment.inteface';
-
-export const environment: IEnvironment = {
-    production: false,
-    server: 'http://localhost:3434/api/'
+export const environment = {
+    production: !!process.env['BTPONTO_PROD'],
+    server: process.env['BTPONTO_SERVER_API']
 }

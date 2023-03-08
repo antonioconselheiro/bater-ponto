@@ -6,24 +6,34 @@
   "targets": {
     "build": {
       "executor": "@nrwl/js:tsc",
-      "outputs": ["{options.outputPath}"],
+      "outputs": [
+        "{options.outputPath}"
+      ],
       "options": {
         "outputPath": "dist/packages/bater-ponto-domain",
         "main": "packages/bater-ponto-domain/src/index.ts",
         "tsConfig": "packages/bater-ponto-domain/tsconfig.lib.json",
-        "assets": ["packages/bater-ponto-domain/*.md"]
+        "assets": [
+          "packages/bater-ponto-domain/*.md"
+        ]
       }
     },
     "lint": {
       "executor": "@nrwl/linter:eslint",
-      "outputs": ["{options.outputFile}"],
+      "outputs": [
+        "{options.outputFile}"
+      ],
       "options": {
-        "lintFilePatterns": ["packages/bater-ponto-domain/**/*.ts"]
+        "lintFilePatterns": [
+          "packages/bater-ponto-domain/**/*.ts"
+        ]
       }
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "outputs": [
+        "{workspaceRoot}/coverage/{projectRoot}"
+      ],
       "options": {
         "jestConfig": "packages/bater-ponto-domain/jest.config.ts",
         "passWithNoTests": true

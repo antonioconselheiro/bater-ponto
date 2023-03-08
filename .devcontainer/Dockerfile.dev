@@ -18,4 +18,4 @@ EXPOSE 4205
 EXPOSE 9229
 
 # nenhuma execução
-CMD [ "npm", "start" ]
+CMD [ "/bin/bash" ]
