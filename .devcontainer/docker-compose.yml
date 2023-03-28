@@ -24,7 +24,7 @@ services:
     volumes:
      - ..:/bater-ponto:cached
      - ../../.ssh/:/home/.ssh
-     - ../../.gitconfig/:/home/.gitconfig
+     - ../../.gitconfig:/home/.gitconfig
      - node_modules_vol:/bater-ponto/node_modules
     working_dir: /bater-ponto
 

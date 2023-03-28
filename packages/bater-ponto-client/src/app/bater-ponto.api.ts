@@ -40,9 +40,9 @@ export class BaterPontoApi {
     )
   }
 
-  deletarPonto(idData: number, idHora: number): Promise<void> {
+  deletarPonto(idHora: number): Promise<void> {
     return this.httpValidatorService.delete(
-      `${environment.server}pontos/datas/${idData}/horas/${idHora}`
+      `${environment.server}pontos/datas/horas/${idHora}`
     )
   }
 

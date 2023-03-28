@@ -1,48 +1,71 @@
 import { DataInputDto, DataOutputDto, HoraInputDto, HoraOutputDto } from '@bater-ponto/bater-ponto-domain';
 import { Injectable } from '@nestjs/common';
+import { HoraConverter } from './hora.converter';
+import { DataConverter } from './data.converter';
+import { DataEntity } from './entity/data.entity';
+import { HoraEntity } from './entity/hora.entity';
 
 @Injectable()
 export class AppService {
 
-  indexData: { [idData: string]: DataOutputDto } = {};
-  indexHora: { [idHora: string]: HoraOutputDto } = {};
+  constructor(
+    private horaConverter: HoraConverter,
+    private dataConverter: DataConverter
+  ) {}
 
-  autoincrement = 1;
-
-  listarDias(): DataOutputDto[] {
-    return Object.values(this.indexData);
+  async listarDias(): Promise<DataOutputDto[]> {
+    const dataEntities = await DataEntity.find();
+    const dataOutputs = dataEntities.map(entity => this.dataConverter.convert(entity));
+    return Promise.resolve(dataOutputs);
   }
 
-  getData(idData: number): DataOutputDto {
-    return this.indexData[idData];
+  async getData(idData: number): Promise<DataOutputDto | null> {
+    const entity = await DataEntity.findOneBy({
+      id: idData
+    });
+
+    if (!entity) {
+      return Promise.resolve(null);
+    }
+
+    const output = this.dataConverter.convert(entity);
+    return Promise.resolve(output);
   }
 
-  criarDia(dataInput: DataInputDto): DataOutputDto {
-    const id = this.autoincrement++;
-    const dataOutput = new DataOutputDto(id, dataInput.dia);
-    this.indexData[id] = dataOutput;
-    return dataOutput;
+  async criarDia(dataInput: DataInputDto): Promise<DataOutputDto> {
+    const entity = this.dataConverter.convert(dataInput);
+    const savedEntity = await DataEntity.save(entity);
+    const output = this.dataConverter.convert(savedEntity);
+    
+    return Promise.resolve(output);
   }
 
-  deletarDia(idData: number): void {
-    delete this.indexData[idData];
+  async deletarDia(idData: number): Promise<void> {
+    await DataEntity.delete(idData);
+    return Promise.resolve();
   }
 
-  baterPonto(idData: number, hora: HoraInputDto): HoraOutputDto {
-    const id = this.autoincrement++;
-    const horaOutput = { id, ...hora };
-    const dataOutput = this.indexData[idData];
-    this.indexHora[id] = horaOutput;
-    dataOutput.pontos.push(horaOutput);
+  async baterPonto(idData: number, hora: HoraInputDto): Promise<HoraOutputDto> {
+    const horaEntity = this.horaConverter.convert(hora);
+    const horaSavedEntity = await HoraEntity.save(horaEntity);
+    const dataEntity = await DataEntity.findOneBy({ id: idData });
 
-    return horaOutput;
+    if (dataEntity) {
+      if (!dataEntity.pontos) {
+        dataEntity.pontos = [];
+      }
+
+      dataEntity.pontos.push(horaSavedEntity);
+      await DataEntity.save(dataEntity);
+    }
+
+    const horaOutput = this.horaConverter.convert(horaSavedEntity);
+    return Promise.resolve(horaOutput);
   }
 
-  deletarPonto(idData: number, idHora: number): void {
-    const dataOutput = this.indexData[idData];
-    const index = dataOutput.pontos.findIndex(hora => hora.id === idHora);
-    dataOutput.pontos.splice(index, 1);
-    delete this.indexHora[idHora];
+  async deletarPonto(idHora: number): Promise<void> {
+    await HoraEntity.delete(idHora);
+    return Promise.resolve();
   }
 
 }

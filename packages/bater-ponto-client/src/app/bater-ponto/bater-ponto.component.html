@@ -2,7 +2,7 @@
   <ul *ngFor="let ponto of data.pontos; trackBy: trackByFn">
     <li>
       {{ponto.hora}}
-      <button (click)="deletarHora(data, ponto)">x</button>
+      <button (click)="deletarHora(ponto)">x</button>
     </li>
   </ul>
   <button (click)="baterPonto(data)">Bater Ponto</button>

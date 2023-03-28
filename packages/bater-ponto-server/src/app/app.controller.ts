@@ -10,24 +10,24 @@ export class AppController {
   ) { }
 
   @Get()
-  listarDias(): DataOutputDto[] {
+  listarDias(): Promise<DataOutputDto[]> {
     return this.appService.listarDias();
   }
 
   @Get(':idData')
-  getData(@Param('idData', ParseIntPipe) idData: number): DataOutputDto {
+  getData(@Param('idData', ParseIntPipe) idData: number): Promise<DataOutputDto | null> {
     return this.appService.getData(idData);
   }
   
   @Post()
   @HttpCode(HttpStatus.CREATED)
-  criarDia(@Body() dataInput: DataInputDto): DataOutputDto {
+  criarDia(@Body() dataInput: DataInputDto): Promise<DataOutputDto> {
     return this.appService.criarDia(dataInput);
   }
 
   @Delete(':idData')
   @HttpCode(HttpStatus.NO_CONTENT)
-  deletarDia(@Param('idData', ParseIntPipe) idData: number): void {
+  deletarDia(@Param('idData', ParseIntPipe) idData: number): Promise<void> {
     return this.appService.deletarDia(idData);
   }
 
@@ -36,16 +36,15 @@ export class AppController {
   baterPonto(
     @Param('idData', ParseIntPipe) idData: number,
     @Body() hora: HoraInputDto
-  ): HoraOutputDto {
+  ): Promise<HoraOutputDto> {
     return this.appService.baterPonto(idData, hora);
   }
 
-  @Delete(':idData/horas/:idHora')
+  @Delete('horas/:idHora')
   @HttpCode(HttpStatus.NO_CONTENT)
   deletarPonto(
-    @Param('idData', ParseIntPipe) idData: number,
     @Param('idHora', ParseIntPipe) idHora: number
-  ): void {
-    return this.appService.deletarPonto(idData, idHora);
+  ): Promise<void> {
+    return this.appService.deletarPonto(idHora);
   }
 }

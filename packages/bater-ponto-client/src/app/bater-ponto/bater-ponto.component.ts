@@ -30,9 +30,9 @@ export class BaterPontoComponent implements OnInit {
       .catch(e => console.error(e));
   }
 
-  deletarHora(data: DataOutputDto, ponto: HoraOutputDto): void {
+  deletarHora(ponto: HoraOutputDto): void {
     this.baterPontoApi
-      .deletarPonto(data.id, ponto.id)
+      .deletarPonto(ponto.id)
       .then(() => this.carregarData())
       .catch(e => console.error(e));
   }
